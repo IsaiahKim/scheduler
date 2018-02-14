@@ -28,7 +28,7 @@ public class Schedule {
 	private int slotLen;
 	
 	// A 2D array of rating aggregators for each time slot
-	private Aggregator[][] timeSlots;
+	private Aggregator agg;
 	
 	// All of the comments placed on the time slots in a 2D array
 	private String[][] comments;
