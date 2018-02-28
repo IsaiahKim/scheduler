@@ -5,9 +5,9 @@ import java.util.Hashtable;
 
 public class timeSlot {
 	
-	private Instant timeMarker; // The time the timeSlot starts at
-	private String time; // Time written out as time, date. 4:00PM, January 9th
-	private int userCount; // TODO: Make sure this updates every time a user joins
+	private String date; // e.g. Thursday, May 12, 2018
+	private String time; // e.g. 4:00 PM
+	private int userCount; // TODO: Erase or make sure this updates every time a user joins
 	
 	// The following show the number of each rating the time slot received
 	private int loves; 		// 3, ideal time to meet
