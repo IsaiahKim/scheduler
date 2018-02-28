@@ -1,6 +1,7 @@
 package proj1;
 import java.time.Instant;
 import java.util.Comparator;
+import java.util.Hashtable;
 
 public class timeSlot {
 	
@@ -14,6 +15,8 @@ public class timeSlot {
 	private int dislikes; 	// -1, aka will be tired
 	private int hates;		// -3, can meet but would greatly prefer not to
 	private int vetoes;		// -infinity, have something to do
+	// Comments made by users on this timeSlot <user, text>
+	private Hashtable<String, String> comments;
 	
 	public timeSlot(int loves, int likes, int dislikes, int hates, int vetoes) {
 		this.loves = loves;
@@ -21,6 +24,7 @@ public class timeSlot {
 		this.dislikes = dislikes;
 		this.hates = hates;
 		this.vetoes = vetoes;
+		this.comments = new Hashtable<String, String>();
 	}
 	
 	public int[] getRatings() {
@@ -28,32 +32,35 @@ public class timeSlot {
 		return ratings;
 	}
 	
-	class sortByLeastConflict implements Comparator<timeSlot> {
-		public int compare(timeSlot a, timeSlot b) {
-			if (b.vetoes - a.vetoes != 0) {
-				return b.vetoes - a.vetoes;
-			}
-			else if (b.hates - a.hates != 0) {
-				return b.hates - a.hates;
-			}
-			else if (b.dislikes - a.dislikes != 0) {
-				return b.dislikes - a.dislikes;
-			}
-			else {
-				return (3*a.loves + a.likes) - (3*b.loves + b.likes);
-			}
-		}
+	public int getLoves() {
+		return this.loves;
 	}
 	
-	class sortByAvgRating implements Comparator<timeSlot> {
-		public int compare(timeSlot a, timeSlot b) {
-			if (b.vetoes - a.vetoes != 0) {
-				return b.vetoes - a.vetoes;
-			}
-			else {
-				return (3*a.loves + a.likes - a.dislikes - 3*a.hates)
-						- (3*b.loves + b.likes - b.dislikes - 3*b.hates);
-			}
+	public int getLikes() {
+		return this.likes;
+	}
+	
+	public int getDislikes() {
+		return this.dislikes;
+	}
+	
+	public int getHates() {
+		return this.hates;
+	}
+	
+	public int getVetoes() {
+		return this.vetoes;
+	}
+	
+	public void addComment(String user, String text) {
+		if (comments.containsKey(user)) {
+			comments.replace(user, text);
 		}
+		comments.put(user, text);
+		
+	}
+	
+	public void rmvComment(String user) {
+		comments.remove(user);
 	}
 }

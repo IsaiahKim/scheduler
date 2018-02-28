@@ -27,11 +27,19 @@ public class Schedule {
 	// The length of each time slot in minutes. Defaults to 30 minutes.
 	private int slotLen;
 	
-	// A 2D array of rating aggregators for each time slot
+	// An aggregator that keeps track of all timeslots and their ratings.
 	private Aggregator agg;
 	
-	// All of the comments placed on the time slots in a 2D array
-	private String[][] comments;
+	public Schedule(Date fstDay, Date lstDay, boolean allVeto, 
+			int startTime, int endTime, int meetLen, int slotLen) {
+		this.fstDay = fstDay;
+		this.lstDay = lstDay;
+		this.allVeto = allVeto;
+		this.startTime = startTime;
+		this.endTime = endTime;
+		this.meetLen = meetLen;
+		this.slotLen = slotLen;
+	}
 	
 	
 	
